@@ -7,7 +7,7 @@
     --text2: #444;
     --a: lightseagreen;
     --b: lightslategray;
-    --c: lightpink;
+    --c: lightcoral;
 }
 *{
     padding: 0;
@@ -65,5 +65,113 @@ nav h1{
     }
     nav #mobile-menu{
         display: block;
+    }
+}
+main{
+    display: flex;
+    padding: 10px;
+}
+main .con{
+    display: flex;
+    margin: 10px;
+    height: calc(100vh - 70px - 40px);
+    border-radius: 20px;
+    align-items: start;
+    flex-direction: column;
+    background-color: var(--base2);
+    width: calc(70% - 20px);
+    justify-content: end;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+main .con p{
+    background: linear-gradient(to right, var(--c), transparent);
+    max-height: 0;
+    overflow: hidden;
+    font-weight: bold;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) all 1s;
+    opacity: 0;
+    padding: 10px;
+}
+main .con:hover p{
+    max-height: 1000px;
+    opacity: 1;
+}
+main .con h2{
+    background: linear-gradient(to right, var(--b), transparent);
+    padding: 10px;
+}
+
+main .s-con{
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px - 20px);
+    width: calc(30% - 20px);
+}
+main .s-con .card{
+    height: calc(33.33% - 20px);
+    margin: 10px;
+    display: flex;
+    align-items: end;
+    border-radius: 20px;
+    justify-content: start;
+    width: 100%;
+    background-color: var(--base2);
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+    transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-repeat: no-repeat;
+}
+main .s-con .card p{
+    padding: 5px 10px;
+    background: linear-gradient(to right, gold, white);
+}
+main .s-con .card:nth-child(1){
+    background-image: url(https://cdn.britannica.com/51/173051-131-1ECD9C16/gold-metal-Stacks-bars-Blocks-money-mercantilism.jpg);
+}
+main .s-con .card:nth-child(1):hover{
+    background-image: url(https://www.bankrate.com/2021/07/09085801/GettyImages-1130532216.jpg);
+}
+main .s-con .card:nth-child(2){
+    background-image: url(https://www.physicalgold.com/wp-content/uploads/2023/12/Silver-Bars-1.png);
+}
+main .s-con .card:nth-child(2):hover{
+    background-image: url(https://m.media-amazon.com/images/I/81UbMYC62cL.jpg);
+}
+main .s-con .card:nth-child(3){
+    background-image: url(https://www.physicalgold.com/wp-content/uploads/2023/12/Silver-Bars-1.png);
+}
+main .s-con .card:nth-child(3):hover{
+    background-image: url(https://m.media-amazon.com/images/I/81UbMYC62cL.jpg);
+}
+
+@media (max-width: 800px) {
+    main{
+        flex-direction: column;
+    }
+    main .con{
+        width: calc(100% - 20px);
+    }
+    main .s-con{
+        height: 200px;
+        flex-direction: row;
+        width: 100%;
+    }
+    main .s-con .card{
+        width: calc(100% - 20px);
+        height: 100%;
+    }
+}
+@media (max-width: 650px) {
+    main .s-con{
+        flex-direction: column;
+        height: fit-content;
+    }
+    main .s-con .card{
+        width: calc(100% - 20px);
+        height: 200px;
     }
 }

@@ -20,5 +20,91 @@
         </ul>
         <span class="material-symbols-rounded" id="mobile-menu">menu</span>
     </nav>
+    <main>
+        <div class="con" id="main-con" onclick="detail(this);">
+            <h2></h2>
+            <p></p>
+        </div>
+        <div class="s-con">
+            <div class="card">
+                <p id="g-p">Today Gold Rate(Gram): Rs.</p>
+            </div>
+            <div class="card">
+                <p id="s-p">Today Gold Rate(Gram): Rs.</p>
+            </div>
+            <div class="card">
+                <p id="b-p">Today Gold Rate(Gram): Rs.</p>
+            </div>
+        </div>
+    </main>
+    <div class="trend" id="trend">
+
+    </div>
 </body>
 </html>
+<script>
+    var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=6cc28427423d40f9a20cae5bc6a87988';
+
+    fetch(url)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data){
+        article = data.articles;
+        number = Math.floor(Math.random() * 10);
+        article = article[number];
+        main = document.getElementById('main-con');
+        main.querySelector('p').innerText = article.description;
+        main.querySelector('h2').innerText = article.title
+        main.style.backgroundImage = 'url('+article.urlToImage + ')';
+        main.title = article.title;
+        document.getElementById('main-con').setAttribute('data',JSON.stringify(article));
+    })
+    function detail(element){
+        window.location.href = "detail.php?data=" + encodeURIComponent(element.getAttribute('data'));
+    }
+</script>
+<script>
+    var url = 'https://newsapi.org/v2/top-headlines?' +
+          'country=us&' +
+          'apiKey=6cc28427423d40f9a20cae5bc6a87988&pageSize=10';
+
+    fetch(url)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data){
+        article = data.articles;
+        for(i=0; i < article.length; i++){
+            data = article[i];
+            console.log(data);
+            if(article.title == "[removed]"){
+                console.log("false");
+            }
+            else{
+                var div = document.createElement('div');
+                div.classList.add("card");
+                var h4 = document.createElement('h4');
+                h4.innerText = data.title;
+                div.appendChild(h4);
+                var p = document.createElement('p');
+                p.innerText = data.description;
+                div.appendChild(p);
+                document.getElementById('trend').appendChild(div);
+                div.style.backgroundImage = 'url('+data.urlToImage+')';
+                div.onclick = function(){detail(this);};
+                div.setAttribute('data',JSON.stringify(data));
+            }
+        }
+    })
+</script>
+<style>
+    .trend .card{
+        height: 400px;
+    }
+    .trend .card p{
+        display: none;
+    }
+</style>
